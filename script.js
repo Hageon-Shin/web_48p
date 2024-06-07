@@ -70,14 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let touchStartX = 0;
     let touchEndX = 0;
+    const threshold = 50; // 스와이프 임계값, 50px마다 이미지 이동
 
     const handleGesture = () => {
-        if (touchEndX < touchStartX) {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
-        }
-        if (touchEndX > touchStartX) {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
+        const swipeDistance = touchEndX - touchStartX;
+        const swipeCount = Math.floor(Math.abs(swipeDistance) / threshold);
+
+        if (swipeCount > 0) {
+            if (swipeDistance < 0) {
+                // 왼쪽에서 오른쪽으로 스와이프
+                currentIndex = (currentIndex + swipeCount) % images.length;
+            } else {
+                // 오른쪽에서 왼쪽으로 스와이프
+                currentIndex = (currentIndex - swipeCount + images.length) % images.length;
+            }
             showImage(currentIndex);
         }
     };
