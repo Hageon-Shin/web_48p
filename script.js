@@ -60,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.value = index;
     };
 
+    // DOMContentLoaded 이벤트 발생 시 초기 이미지를 설정
+    showImage(currentIndex);
+
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowRight') {
             currentIndex = (currentIndex + 1) % images.length;
