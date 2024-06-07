@@ -53,9 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
     const displayedImage = document.getElementById('displayed-image');
+    const progressBar = document.getElementById('progress-bar');
 
     const showImage = (index) => {
         displayedImage.src = images[index];
+        progressBar.value = index;
     };
 
     document.addEventListener('keydown', (event) => {
@@ -78,10 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (swipeCount > 0) {
             if (swipeDistance < 0) {
-                // 왼쪽에서 오른쪽으로 스와이프
                 currentIndex = (currentIndex + swipeCount) % images.length;
             } else {
-                // 오른쪽에서 왼쪽으로 스와이프
                 currentIndex = (currentIndex - swipeCount + images.length) % images.length;
             }
             showImage(currentIndex);
@@ -95,5 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].screenX;
         handleGesture();
+    });
+
+    progressBar.addEventListener('input', (event) => {
+        currentIndex = parseInt(event.target.value, 10);
+        showImage(currentIndex);
     });
 });
