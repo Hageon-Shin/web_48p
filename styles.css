@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+#image-container {
+    width: 80%;
+    max-width: 600px;
+}
+
+#displayed-image {
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
