@@ -7,33 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
         'image41.jpg','image42.jpg','image43.jpg','image44.jpg','image45.jpg','image46.jpg','image47.jpg','image48.jpg','image49.jpg'
     ];
     
-        let currentIndex = 0;
-        const displayedImage = document.getElementById('displayed-image');
-        const progressBar = document.getElementById('progress-bar');
-        const imageIndex = document.getElementById('image-index');
+    let currentIndex = 0;
+    const displayedImage = document.getElementById('displayed-image');
+    const progressBar = document.getElementById('progress-bar');
+    const imageIndex = document.getElementById('image-index');
     
-        const showImage = (index) => {
-            displayedImage.src = images[index];
-            progressBar.value = index;
-            imageIndex.textContent = `Frame #${index + 1}`;
-        };
+    const showImage = (index) => {
+        displayedImage.src = images[index];
+        progressBar.value = index;
+        imageIndex.textContent = `Frame #${index + 1}`;
+    };
     
         // DOMContentLoaded 이벤트 발생 시 초기 이미지를 설정
-        showImage(currentIndex);
+    showImage(currentIndex);
     
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % images.length;
-                showImage(currentIndex);
-            } else if (event.key === 'ArrowLeft') {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                showImage(currentIndex);
-            }
-        });
-    
-        progressBar.addEventListener('input', (event) => {
-            currentIndex = parseInt(event.target.value, 10);
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight') {
+            currentIndex = (currentIndex + 1) % images.length;
             showImage(currentIndex);
-        });
+        } else if (event.key === 'ArrowLeft') {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
     });
+
+    progressBar.addEventListener('input', (event) => {
+        currentIndex = parseInt(event.target.value, 10);
+        showImage(currentIndex);
+    });
+});
     
