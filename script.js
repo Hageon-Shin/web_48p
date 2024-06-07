@@ -48,20 +48,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'image46.jpg',
         'image47.jpg',
         'image48.jpg',
-        'image49.jpg',
+        'image49.jpg'
     ];
-
+    
     let currentIndex = 0;
     const displayedImage = document.getElementById('displayed-image');
     const progressBar = document.getElementById('progress-bar');
-
+    
     const showImage = (index) => {
         displayedImage.src = images[index];
         progressBar.value = index;
     };
-
-    // DOMContentLoaded 이벤트 발생 시 초기 이미지를 설정
-    showImage(currentIndex);
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowRight') {
@@ -80,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleGesture = () => {
         const swipeDistance = touchEndX - touchStartX;
         const swipeCount = Math.floor(Math.abs(swipeDistance) / threshold);
-
+    
         if (swipeCount > 0) {
             if (swipeDistance < 0) {
                 currentIndex = (currentIndex + swipeCount) % images.length;
@@ -94,14 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchstart', (event) => {
         touchStartX = event.changedTouches[0].screenX;
     });
-
+    
     document.addEventListener('touchend', (event) => {
         touchEndX = event.changedTouches[0].screenX;
         handleGesture();
     });
-
+    
     progressBar.addEventListener('input', (event) => {
         currentIndex = parseInt(event.target.value, 10);
         showImage(currentIndex);
     });
 });
+    
