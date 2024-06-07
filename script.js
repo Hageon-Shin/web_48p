@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const showImage = (index) => {
             displayedImage.src = images[index];
             progressBar.value = index;
-            imageIndex.textContent = `Frame # ${index + 1}`;
+            imageIndex.textContent = `Frame #${index + 1}`;
         };
     
         // DOMContentLoaded 이벤트 발생 시 초기 이미지를 설정
